@@ -1,123 +1,137 @@
-#×ÀÃæ
+#æ¡Œé¢
 * xmonad
-* xmobar (×´Ì¬À¸)
-* dmenu (Æô¶¯Æ÷)
-* ~~trayer~~ ²»Ö§³Ö¶àÆÁÄ», ÆúÓÃ.
-* trayer-srg(AUR) (ÍĞÅÌ)
-* feh (×ÀÃæ±³¾°)
-* xscreensaver (ËøÆÁ½çÃæ)
-* scrot (½ØÍ¼)
-* lxappearance (gtk ½çÃæÃÀ»¯) | gtk-chtheme
+* xmobar (çŠ¶æ€æ )
+* dmenu (å¯åŠ¨å™¨)
+* ~~trayer~~ ä¸æ”¯æŒå¤šå±å¹•, å¼ƒç”¨.
+* trayer-srg(AUR) (æ‰˜ç›˜)
+* feh (æ¡Œé¢èƒŒæ™¯)
+* xscreensaver (é”å±ç•Œé¢)
+* scrot (æˆªå›¾)
+* lxappearance (gtk ç•Œé¢ç¾åŒ–) | gtk-chtheme
 * qtconfig-qt4
 
-#ÍøÂç
+#ç½‘ç»œ
 * networkmanger 
 * network-manager-applet(nm-applet)
-* gnome-keyring (·ñÔòÎŞ·¨Á¬½ÓÖÁ¼ÓÃÜµÄÎŞÏßÍøÂç)
-×¢Òâ networkmanger Óë netctl ³åÍ»£¬ Òò´Ë°²×° networkmanger ºóÒªÔÚ systemctl disable netclt µÄ·şÎñ
+* gnome-keyring (å¦åˆ™æ— æ³•è¿æ¥è‡³åŠ å¯†çš„æ— çº¿ç½‘ç»œ)
+æ³¨æ„ networkmanger ä¸ netctl å†²çªï¼Œ å› æ­¤å®‰è£… networkmanger åè¦åœ¨ systemctl disable netclt çš„æœåŠ¡
 
-##Ğ£Ô°Íø
+##æ ¡å›­ç½‘
 * mentoHUST
 
-##¿ªÆôÈÈµã
-[createap ½Å±¾](https://wiki.archlinux.org/index.php/Software_access_point)
+##å¼€å¯çƒ­ç‚¹
+[createap è„šæœ¬](https://wiki.archlinux.org/index.php/Software_access_point)
 
 ##Wine TMQQ-2013
-ÎªÊ²Ã´ winetrick ²»¹ÜÓÃ... °²×°Ê±×ÜÊÇÌáÊ¾ ¸Ãverb ÒÑ´æÔÚ
-°²×°:
+ä¸ºä»€ä¹ˆ winetrick ä¸ç®¡ç”¨... å®‰è£…æ—¶æ€»æ˜¯æç¤º è¯¥verb å·²å­˜åœ¨
+å®‰è£…:
 * wine
 * winetrick
 * lib32-ncurses
 * lib32-mpg123
-* [µËÅÊ´ò°üµÄTM2013](http://www.zhihu.com/question/23770274/answer/45703773)
-  (ËÆºõ¸ÃÅäÖÃµÄÎÒ¶¼×Ô¼ºÅäÖÃÁË)
+* [é‚“æ”€æ‰“åŒ…çš„TM2013](http://www.zhihu.com/question/23770274/answer/45703773)
+  (ä¼¼ä¹è¯¥é…ç½®çš„æˆ‘éƒ½è‡ªå·±é…ç½®äº†)
 * winetrick riched20 ie6 mfc42 cjkfonts
 
-#ÉùÒô
+#å£°éŸ³
 
-##½ûÓÃ·äÃùÆ÷: 
-    modprobe -r pcspkr # ½ûÓÃÒ»´Î
-ÔÚ`/etc/modprobe.d/modprobe.conf`ÖĞ£¬¼ÓÈë`blacklist pcspkr` # ÓÀ¾Ã½ûÓÃ
+##ç¦ç”¨èœ‚é¸£å™¨: 
+    modprobe -r pcspkr # ç¦ç”¨ä¸€æ¬¡
+
+åœ¨`/etc/modprobe.d/modprobe.conf`ä¸­ï¼ŒåŠ å…¥`blacklist pcspkr` # æ°¸ä¹…ç¦ç”¨
 
 ##ALSA
 [ALSA](https://wiki.archlinux.org/index.php/Advanced_Linux_Sound_Architecture)
-ALSA Ä¬ÈÏÒÑ¾­°²×°£¬Ö»ÊÇËùÓĞÉùµÀ±»¾²Òô¡£
 
-ĞèÒª×öµÄÓĞ£º
-* ½«ÓÃ»§¼ÓÈë `audio` ×é (±¾µØÓÃ»§Ä¬ÈÏ¼ÓÈë)
-* °²×° `alsa-utils` Èí¼ş°ü
-* Ö´ĞĞ `alsamixer`£¬ ±êÓĞ MM µÄÉùµÀÊÇ¾²ÒôµÄ£¬°´ M ¼ü½â³ı 
-* Æô¶¯·şÎñ `alsa-restore.service`
+ALSA é»˜è®¤å·²ç»å®‰è£…ï¼Œåªæ˜¯æ‰€æœ‰å£°é“è¢«é™éŸ³ã€‚
 
-#ÎÄ¼ş¹ÜÀí
+éœ€è¦åšçš„æœ‰ï¼š
+* å°†ç”¨æˆ·åŠ å…¥ `audio` ç»„ (æœ¬åœ°ç”¨æˆ·é»˜è®¤åŠ å…¥)
+* å®‰è£… `alsa-utils` è½¯ä»¶åŒ…
+* æ‰§è¡Œ `alsamixer`ï¼Œ æ ‡æœ‰ MM çš„å£°é“æ˜¯é™éŸ³çš„ï¼ŒæŒ‰ M é”®è§£é™¤ 
+* å¯åŠ¨æœåŠ¡ `alsa-restore.service`
 
-##ËÑË÷
+#æ–‡ä»¶ç®¡ç†
+
+##æœç´¢
 * mlocate 
 
-##ÍøÅÌ
-* ¼á¹ûÔÆ(AUR)
+##ç½‘ç›˜
+* åšæœäº‘(AUR)
 
-#ÏÔÊ¾
+#æ˜¾ç¤º
 
-##ÆÁÄ»
+##å±å¹•
 [Multihead](https://wiki.archlinux.org/index.php/Multihead)
-°²×° `xorg-xrandr` Èí¼ş°ü£¬ÆäÖĞ°üº¬ `xrandr` ¹¤¾ß¿ÉÓÃÀ´ÉèÖÃ¸÷ÏÔÊ¾Æ÷µÄ²ÎÊı
+
+å®‰è£… `xorg-xrandr` è½¯ä»¶åŒ…ï¼Œå…¶ä¸­åŒ…å« `xrandr` å·¥å…·å¯ç”¨æ¥è®¾ç½®å„æ˜¾ç¤ºå™¨çš„å‚æ•°
     xrandr --output VGA-0 --auto --output LVDS --auto --right-of VGA-0
 
-#´Êµä
+#è¯å…¸
 [goldendict](http://blog.yuanbin.me/posts/2013/01/goldendictxia-san-da-you-zhi-ci-ku-shi-yong-xiao-ji.html)
 
 #Pacman
-* ¸üĞÂÊı¾İ¿â: `pacman -Syy`
-* ¹ö: `pacman -Syu`
-* ²»Éı¼¶Èí¼ş°ü: `/etc/pacman.conf` ÖĞ `IgnoreGroup = package_name`
-* µİ¹éÉ¾³ıÈí¼ş°ü¼°ËùÓĞÒÀÀµ¸Ã°üµÄ³ÌĞò: `pacman -Rsc package_name`
-* É¾³ıÈí¼ş°üµ«²»É¾³ıÒÀÀµ¸Ã°üµÄÆäËû³ÌĞò: `pacman -Rdd package_name`
-* ¼ì²éÎ´°²×°Èí¼ş°üÖĞµÄÎÄ¼şÁĞ±í: `pkgfile`
-* »Ø¹öÄ³¸ö°ü: `pacman -R package_name`, µ½`/var/cache/pacman/pkg/`ÖĞÑ°ÕÒÆä¾É°æ±¾²¢ºöÂÔ¸Ã°üµÄÉı¼¶
+* æ›´æ–°æ•°æ®åº“: `pacman -Syy`
+* æ»š: `pacman -Syu`
+* ä¸å‡çº§è½¯ä»¶åŒ…: `/etc/pacman.conf` ä¸­ `IgnoreGroup = package_name`
+* é€’å½’åˆ é™¤è½¯ä»¶åŒ…åŠæ‰€æœ‰ä¾èµ–è¯¥åŒ…çš„ç¨‹åº: `pacman -Rsc package_name`
+* åˆ é™¤è½¯ä»¶åŒ…ä½†ä¸åˆ é™¤ä¾èµ–è¯¥åŒ…çš„å…¶ä»–ç¨‹åº: `pacman -Rdd package_name`
+* æ£€æŸ¥æœªå®‰è£…è½¯ä»¶åŒ…ä¸­çš„æ–‡ä»¶åˆ—è¡¨: `pkgfile`
+* å›æ»šæŸä¸ªåŒ…: `pacman -R package_name`, åˆ°`/var/cache/pacman/pkg/`ä¸­å¯»æ‰¾å…¶æ—§ç‰ˆæœ¬å¹¶å¿½ç•¥è¯¥åŒ…çš„å‡çº§
 
-#×ÖÌå
-ÓÃ»§µÄ×Ô¶¨ÒåÉèÖÃÔÚ `$XDG_CONFIG_HOME/.config/fontconfig/fonts.conf` ÖĞ¡£
-ÔÚÏßÉú³ÉÅäÖÃ£º [Fontconfig Designer](http://wenq.org/cloud/fcdesigner_local.html#`)
+#å­—ä½“
+ç”¨æˆ·çš„è‡ªå®šä¹‰è®¾ç½®åœ¨ `$XDG_CONFIG_HOME/.config/fontconfig/fonts.conf` ä¸­ã€‚
 
-#µçÔ´
-Ê¹ÓÃ systemd ¹ÜÀí, **Ã»ÓĞ**°²×° `acpi` »ò `pm-utils`.
+åœ¨çº¿ç”Ÿæˆé…ç½®ï¼š [Fontconfig Designer](http://wenq.org/cloud/fcdesigner_local.html#`)
 
-##ºÏ¸Ç
-ºÏ¸ÇÎÊÌâÔÚË«ÆÁÇé¿öÏÂÎŞ·¨¸´ÏÖ, ÔİÊ±ºöÂÔ
+#ç”µæº
+ä½¿ç”¨ systemd ç®¡ç†, **æ²¡æœ‰**å®‰è£… `acpi` æˆ– `pm-utils`.
 
-##Ë¯Ãß
-Ä¬ÈÏÅäÖÃÏÂÊ¹ÓÃ `systemctl suspend` ±íÏÖÕı³£
+##åˆç›–
+åˆç›–é—®é¢˜åœ¨åŒå±æƒ…å†µä¸‹æ— æ³•å¤ç°, æš‚æ—¶å¿½ç•¥
 
-##ĞİÃß
-ĞèÒªÉÔ×÷ÅäÖÃ, ²Î¼û:
+##ç¡çœ 
+é»˜è®¤é…ç½®ä¸‹ä½¿ç”¨ `systemctl suspend` è¡¨ç°æ­£å¸¸
+
+##ä¼‘çœ 
+éœ€è¦ç¨ä½œé…ç½®, å‚è§:
 [Hibernation](https://wiki.archlinux.org/index.php/Power_management/Suspend_and_hibernate#Hibernation)
-1. ĞèÒªÒ»¸ö swap ·ÖÇø, Èç¹û swap ·ÖÇø´óĞ¡Ğ¡ÓÚ RAM ´óĞ¡, ÇëÔö´ó swap ·ÖÇø, »òÕß¼õĞ¡  `/sys/power/image_size`, ¶ÔÓÚÊ¹ÓÃ swap file µÄÇé¿ö²»ÌÖÂÛ
-2. ÔÚ bootloader ÖĞÔö¼ÓÒ»¸öÄÚºË²ÎÊı `resume=/dev/sdxY` (sdxY ÊÇ swap ·ÖÇøµÄÃû×Ö), ´ú±í´ÓÄÄ¸ö·ÖÇø resume. ¶ÔÓÚ grub2, ±à¼­ `/etc/default/grub` ÎÄ¼şÖĞµÄ `GRUB_CMDLINE_LINUX_DEFAULT` ²ÎÊı, ±¾´Î±à¼­ÈçÏÂ:
+1. éœ€è¦ä¸€ä¸ª swap åˆ†åŒº, å¦‚æœ swap åˆ†åŒºå¤§å°å°äº RAM å¤§å°, è¯·å¢å¤§ swap åˆ†åŒº, æˆ–è€…å‡å°  `/sys/power/image_size`, å¯¹äºä½¿ç”¨ swap file çš„æƒ…å†µä¸è®¨è®º
+2. åœ¨ bootloader ä¸­å¢åŠ ä¸€ä¸ªå†…æ ¸å‚æ•° `resume=/dev/sdxY` (sdxY æ˜¯ swap åˆ†åŒºçš„åå­—), ä»£è¡¨ä»å“ªä¸ªåˆ†åŒº resume. å¯¹äº grub2, ç¼–è¾‘ `/etc/default/grub` æ–‡ä»¶ä¸­çš„ `GRUB_CMDLINE_LINUX_DEFAULT` å‚æ•°, æœ¬æ¬¡ç¼–è¾‘å¦‚ä¸‹:
 ```
 - GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"
 + GRUB_CMDLINE_LINUX_DEFAULT="quiet splash resume=/dev/sda5"
 ```
-¸üĞÂ grub ÅäÖÃ `grub-mkconfig -o /boot/grub/grub.cfg`
-3. ÅäÖÃ initramfs, ±à¼­ `/etc/mkinitcpio.conf` ÖĞµÄ `HOOKS` ²ÎÊı, ÔÚ `udev` ºóÔö¼Ó `resume`, ¸Ä¶¯ÈçÏÂ:
+æ›´æ–° grub é…ç½® `grub-mkconfig -o /boot/grub/grub.cfg`
+3. é…ç½® initramfs, ç¼–è¾‘ `/etc/mkinitcpio.conf` ä¸­çš„ `HOOKS` å‚æ•°, åœ¨ `udev` åå¢åŠ  `resume`, æ”¹åŠ¨å¦‚ä¸‹:
 ```
 - HOOKS="base udev autodetect modconf block filesystems keyboard fsck"
 + HOOKS="base udev resume autodetect modconf block filesystems keyboard fsck"
 ```
-ÖØĞÂÉú³É initramfs ¾µÏñ: `mkinitcpio -p linux`
-4. ÏÖÔÚ¿ÉÒÔÊ¹ÓÃ `systemctl hibernate` ĞİÃßÁË
+é‡æ–°ç”Ÿæˆ initramfs é•œåƒ: `mkinitcpio -p linux`
+4. ç°åœ¨å¯ä»¥ä½¿ç”¨ `systemctl hibernate` ä¼‘çœ äº†
 
-Áí, ½«°´ÏÂµçÔ´¼üµÄ¶¯×÷°ó¶¨ÎªĞİÃß: ±à¼­ `/etc/systemd/logind.conf` ÖĞ HandlePowerKey=hibernate 
+å¦, å°†æŒ‰ä¸‹ç”µæºé”®çš„åŠ¨ä½œç»‘å®šä¸ºä¼‘çœ : ç¼–è¾‘ `/etc/systemd/logind.conf` ä¸­ HandlePowerKey=hibernate 
 
-#ÏÖ´æµÄÎÊÌâ
-- [ ] ´íÎóµÄ fstab
-- [ ] ¹âÇıÄªÃûµ¯³ö
-- [ ] A ¿¨Çı¶¯µÄ `UVD clock timeout`
-- [x] ÎŞ·¨ĞİÃß£º×ñÑ­ Wiki ÅäÖÃ£¬ÒÀÈ»ÓĞ»úÂÊ»½ĞÑÊ§°Ü¡£
-- [x] ×ÖÌåäÖÈ¾£º×ñÑ­ Wiki ÅäÖÃ¡£
-- [x] ¼üÅÌµ÷½ÚÒôÁ¿£º pnmixer ×Ô´øÎÒ¾¹È»²»ÖªµÀ¡£
-- [ ] µ¥ÆÁÄ»ºÏ¸ÇºóÆÁÄ»ÉÁË¸
-- [ ] »»Ò»¸ö IRC ¿Í»§¶Ë
-- [ ] haskell °ü°²×°Ğ¶ÔØÊ±ÌáÊ¾µÄ warnning ºÍ error
-- [ ] wine qq Ö»ÄÜÔÚÒ»¸öÆÁÄ»ÉÏÔËĞĞ
-- [x] ÎŞÏßÈÈµã£º AUR ½Å±¾ `create_ap`
+#è™šæ‹ŸåŒ–
+##Virtual Box
+1. å®‰è£…è½¯ä»¶åŒ… `virtualbox` `virtualbox-host-modules` åè€…åŒ…å«äº†é»˜è®¤å†…æ ¸ä½¿ç”¨çš„å†…æ ¸æ¨¡å—ã€‚
+2. åŠ è½½å†…æ ¸æ¨¡å—ï¼š éœ€è¦åŠ è½½çš„æ¨¡å—æœ‰ `vboxdrv` `vboxnetadp` `vboxnetflt` å’Œ `vboxpci`ã€‚
+    * æ‰‹åŠ¨åŠ è½½ï¼š`modprobe module_name`
+    * å¼€æœºè‡ªåŠ¨åŠ è½½ï¼š å»ºç«‹ `/etc/modules-load.d/vbox.conf`ï¼Œ æ¯ä¸ªæ¨¡å—åä¸ºä¸€è¡Œã€‚
+
+3. æ·»åŠ ç”¨æˆ·åˆ° `vboxusers` ç»„ï¼š ``gpasswd -a `whoami` vboxusers``
+4. ä¸º guest å®‰è£…å¢å¼ºåŠŸèƒ½ï¼š å´”åœŸè±ªè¯´å¢å¼ºåŠŸèƒ½çš„å…‰ç›˜åœ¨åŒ… `virtualbox-guset-iso` ä¸­ï¼Œç„¶è€Œè£…äº†æ²¡æœ‰ç”¨ï¼Œç›´æ¥æ ¹æ® VirtualBox çš„æç¤ºä»ç½‘ä¸Šä¸‹è½½äº†ã€‚
+
+#ç°å­˜çš„é—®é¢˜
+- [ ] é”™è¯¯çš„ fstab
+- [ ] å…‰é©±è«åå¼¹å‡º
+- [ ] A å¡é©±åŠ¨çš„ `UVD clock timeout`
+- [x] æ— æ³•ä¼‘çœ ï¼šéµå¾ª Wiki é…ç½®ï¼Œä¾ç„¶æœ‰æœºç‡å”¤é†’å¤±è´¥ã€‚
+- [x] å­—ä½“æ¸²æŸ“ï¼šéµå¾ª Wiki é…ç½®ã€‚
+- [x] é”®ç›˜è°ƒèŠ‚éŸ³é‡ï¼š pnmixer è‡ªå¸¦æˆ‘ç«Ÿç„¶ä¸çŸ¥é“ã€‚
+- [ ] å•å±å¹•åˆç›–åå±å¹•é—ªçƒ
+- [ ] æ¢ä¸€ä¸ª IRC å®¢æˆ·ç«¯
+- [ ] haskell åŒ…å®‰è£…å¸è½½æ—¶æç¤ºçš„ warnning å’Œ error
+- [x] wine qq åªèƒ½åœ¨ä¸€ä¸ªå±å¹•ä¸Šè¿è¡Œï¼šå‹‰å¼ºè§£å†³ï¼Œä½¿ç”¨ wine çš„è™šæ‹Ÿæ¡Œé¢å¯ç ´ã€‚
+- [x] æ— çº¿çƒ­ç‚¹ï¼š AUR è„šæœ¬ `create_ap`
