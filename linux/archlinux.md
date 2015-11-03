@@ -2,10 +2,10 @@
 * xmonad
 * xmobar (状态栏)
 * dmenu (启动器)
-* ~~trayer~~ 不支持多屏幕, 弃用.
+* ~~trayer~~ 不支持多屏幕, 弃用
 * trayer-srg(AUR) (托盘)
 * feh (桌面背景)
-* xscreensaver (锁屏界面)
+* ~~xscreensaver~~ (锁屏界面) 没多大用处
 * scrot (截图)
 * lxappearance (gtk 界面美化) | gtk-chtheme
 * qtconfig-qt4
@@ -14,6 +14,7 @@
 * networkmanger 
 * network-manager-applet(nm-applet)
 * gnome-keyring (否则无法连接至加密的无线网络)
+
 注意 networkmanger 与 netctl 冲突， 因此安装 networkmanger 后要在 systemctl disable netclt 的服务
 
 ##校园网
@@ -65,7 +66,10 @@ ALSA 默认已经安装，只是所有声道被静音。
 [Multihead](https://wiki.archlinux.org/index.php/Multihead)
 
 安装 `xorg-xrandr` 软件包，其中包含 `xrandr` 工具可用来设置各显示器的参数
-    xrandr --output VGA-0 --auto --output LVDS --auto --right-of VGA-0
+
+```shell
+xrandr --output VGA-0 --auto --output LVDS --auto --right-of VGA-0
+```
 
 #词典
 [goldendict](http://blog.yuanbin.me/posts/2013/01/goldendictxia-san-da-you-zhi-ci-ku-shi-yong-xiao-ji.html)
@@ -122,6 +126,49 @@ ALSA 默认已经安装，只是所有声道被静音。
 
 3. 添加用户到 `vboxusers` 组： ``gpasswd -a `whoami` vboxusers``
 4. 为 guest 安装增强功能： 崔土豪说增强功能的光盘在包 `virtualbox-guset-iso` 中，然而装了没有用，直接根据 VirtualBox 的提示从网上下载了。
+
+#数据库
+##MySQL
+###安装
+
+[Arch Wiki](https://wiki.archlinux.org/index.php/MySQL_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87))
+
+使用 arch 官方推荐的开源实现 MariaDB：安装 `mariadb` `mariadb-clients` `libmariadbclient`
+
+安装后运行命令：
+
+```shell
+sudo mysql_install_db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
+systemctl start mysqld
+sudo mysql_secure_installation  # 运行安装脚本
+systemctl restart mysqld
+```
+
+###配置
+配置文件之一在 `/etc/mysql/my.cnf`
+
+* 禁用远程登录：取消注释配置文件中 `skip-networking` 一行；
+* 自动补全： 将配置文件中的 `no-auto-rehash` 一行替换为 `auto-rehash`，并在启动客户端时加上 `--auto-rehash` 选项；
+
+####Python Support
+安装 `python-mysql-connector`，作用于 Python 3.5
+
+测试代码：
+
+```
+#!/usr/bin/python
+import mysql.connector as mariadb
+
+mariadb_connection = mariadb.connect(user='user_name', password='root_psw', database='db_name')
+cursor = mariadb_connection.cursor()
+
+cursor.execute("SELECT * FROM table_name")
+
+for i in cursor:
+    print(i)
+
+mariadb_connection.close()
+```
 
 #现存的问题
 - [ ] 错误的 fstab
