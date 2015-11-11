@@ -1,14 +1,36 @@
-#桌面
-* xmonad
-* xmobar (状态栏)
-* dmenu (启动器)
-* ~~trayer~~ 不支持多屏幕, 弃用
-* trayer-srg(AUR) (托盘)
-* feh (桌面背景)
-* ~~xscreensaver~~ (锁屏界面) 没多大用处
-* scrot (截图)
-* lxappearance (gtk 界面美化) | gtk-chtheme
-* qtconfig-qt4
+# 常用软件列表
+* WM/DE: xmonad
+* 虚拟终端：konsole
+* 编辑器：vim
+* 输入法：fcitx+rime
+* 浏览器：firefox
+* 状态栏：xmobar
+* 启动器：dmenu
+* 托盘： ~~trayer~~(不支持多屏幕, 弃用), trayer-srg<sup>AUR</sup>
+* 图片浏览： feh
+* 文件管理： dolphin
+* Office： wps-offic
+* PDF：okular
+* 截图：scrot
+* 混频器： alsamixer, pnmxier-gtk3<sup>AUR</sup>
+* 主题更改：lxappearance(gtk), qtconfig-qt4(qt4)
+* IM: qtox-git, ~~cutegram~~(无法登录，弃用), telegram-desktop-bin-dev
+* 词典：goldlendict
+* 网盘：nutstore<sup>AUR</sup>
+* 网络管理前端： network-manager-applet
+
+##Firefox 插件
+* pantadactyl(使用 pentadactyl-git<sup>AUR</sup>， nightly build 对于 ff42 已经不可用)
+* ~~标签页管理器~~(已于 2015-11 停止支持) 
+* Tab MixPlus
+* Fire Guesture
+* Sytlish
+* Push to Kindle
+* LassPass 
+* ChatZilla
+* ADBlocker
+* FoxyProxy
+* Mulitfox
 
 #网络
 * networkmanger 
@@ -18,13 +40,13 @@
 注意 networkmanger 与 netctl 冲突， 因此安装 networkmanger 后要在 systemctl disable netclt 的服务
 
 ##校园网
-* mentoHUST
+* mentohust
 
 ##开启热点
 [createap 脚本](https://wiki.archlinux.org/index.php/Software_access_point)
 
 ##Wine TMQQ-2013
-为什么 winetrick 不管用... 安装时总是提示 该verb 已存在
+为什么 winetrick 不管用... 安装时总是提示 该verb 已存在  
 安装:
 * wine
 * winetrick
@@ -35,14 +57,13 @@
 * winetrick riched20 ie6 mfc42 cjkfonts
 
 #声音
-
 ##禁用蜂鸣器: 
     modprobe -r pcspkr # 禁用一次
 
 在`/etc/modprobe.d/modprobe.conf`中，加入`blacklist pcspkr` # 永久禁用
 
 ##ALSA
-[ALSA](https://wiki.archlinux.org/index.php/Advanced_Linux_Sound_Architecture)
+参见 [ALSA](https://wiki.archlinux.org/index.php/Advanced_Linux_Sound_Architecture)
 
 ALSA 默认已经安装，只是所有声道被静音。
 
@@ -52,18 +73,9 @@ ALSA 默认已经安装，只是所有声道被静音。
 * 执行 `alsamixer`， 标有 MM 的声道是静音的，按 M 键解除 
 * 启动服务 `alsa-restore.service`
 
-#文件管理
-
-##搜索
-* mlocate 
-
-##网盘
-* 坚果云(AUR)
-
 #显示
-
 ##屏幕
-[Multihead](https://wiki.archlinux.org/index.php/Multihead)
+参见 [Multihead](https://wiki.archlinux.org/index.php/Multihead)
 
 安装 `xorg-xrandr` 软件包，其中包含 `xrandr` 工具可用来设置各显示器的参数
 
@@ -71,8 +83,7 @@ ALSA 默认已经安装，只是所有声道被静音。
 xrandr --output VGA-0 --auto --output LVDS --auto --right-of VGA-0
 ```
 
-#词典
-[goldendict](http://blog.yuanbin.me/posts/2013/01/goldendictxia-san-da-you-zhi-ci-ku-shi-yong-xiao-ji.html)
+另外有前端 arandr 和 drandr<sup>AUR</sup> 可用。
 
 #Pacman
 * 更新数据库: `pacman -Syy`
@@ -98,20 +109,24 @@ xrandr --output VGA-0 --auto --output LVDS --auto --right-of VGA-0
 默认配置下使用 `systemctl suspend` 表现正常
 
 ##休眠
-需要稍作配置, 参见:
-[Hibernation](https://wiki.archlinux.org/index.php/Power_management/Suspend_and_hibernate#Hibernation)
+需要稍作配置, 参见 [Hibernation](https://wiki.archlinux.org/index.php/Power_management/Suspend_and_hibernate#Hibernation)
+
 1. 需要一个 swap 分区, 如果 swap 分区大小小于 RAM 大小, 请增大 swap 分区, 或者减小  `/sys/power/image_size`, 对于使用 swap file 的情况不讨论
 2. 在 bootloader 中增加一个内核参数 `resume=/dev/sdxY` (sdxY 是 swap 分区的名字), 代表从哪个分区 resume. 对于 grub2, 编辑 `/etc/default/grub` 文件中的 `GRUB_CMDLINE_LINUX_DEFAULT` 参数, 本次编辑如下:
-```
+
+```patch
 - GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"
 + GRUB_CMDLINE_LINUX_DEFAULT="quiet splash resume=/dev/sda5"
 ```
+
 更新 grub 配置 `grub-mkconfig -o /boot/grub/grub.cfg`
 3. 配置 initramfs, 编辑 `/etc/mkinitcpio.conf` 中的 `HOOKS` 参数, 在 `udev` 后增加 `resume`, 改动如下:
-```
+
+```patch
 - HOOKS="base udev autodetect modconf block filesystems keyboard fsck"
 + HOOKS="base udev resume autodetect modconf block filesystems keyboard fsck"
 ```
+
 重新生成 initramfs 镜像: `mkinitcpio -p linux`
 4. 现在可以使用 `systemctl hibernate` 休眠了
 
@@ -130,8 +145,7 @@ xrandr --output VGA-0 --auto --output LVDS --auto --right-of VGA-0
 #数据库
 ##MySQL
 ###安装
-
-[Arch Wiki](https://wiki.archlinux.org/index.php/MySQL_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87))
+参见 [MySQL](https://wiki.archlinux.org/index.php/MySQL_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87))
 
 使用 arch 官方推荐的开源实现 MariaDB：安装 `mariadb` `mariadb-clients` `libmariadbclient`
 
@@ -155,7 +169,7 @@ systemctl restart mysqld
 
 测试代码：
 
-```
+```python
 #!/usr/bin/python
 import mysql.connector as mariadb
 
@@ -171,7 +185,7 @@ mariadb_connection.close()
 ```
 
 #现存的问题
-- [ ] 错误的 fstab
+- [x] 错误的 fstab：已改正
 - [ ] 光驱莫名弹出
 - [ ] A 卡驱动的 `UVD clock timeout`
 - [x] 无法休眠：遵循 Wiki 配置，依然有机率唤醒失败。
