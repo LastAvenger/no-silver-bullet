@@ -1,9 +1,20 @@
-# 批量处理文件
+# 插件列表
+* Vundle 
+* youcompleteme
+* nerdtree
+* powerline
+* fcitx.vim
+
+# TIPS
+## 批量处理文件
 用 `args` 批量打开文件, 用 `argdo` 批量处理.
-    " 给 MnO2 的 PR: 把书中所有的```替换为```haskell 
-    :cd GitHub\learnyouahaskell-zh\
-    :args *\*\*.md
-    :argdo %s/```\(\n.\)\@=/```haskell/ge | update
+
+```viml
+" 给 MnO2 的 PR: 把书中所有的 ``` 替换为 ```haskell 
+:cd GitHub\learnyouahaskell-zh\
+:args *\*\*.md
+:argdo %s/```\(\n.\)\@=/```haskell/ge | update
+```
 
 * 其中`\(\)\@=`是正则的零宽断言
 * `/ge`的`e`代表忽略错误

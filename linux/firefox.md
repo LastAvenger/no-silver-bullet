@@ -2,7 +2,7 @@
 
 # Plugins
 ## Stylish
-* `@-moz-document domain` ×÷ÓÃÓÚÓòÃû¼°×ÓÓòÃû£¬`°Ù¶È.com`, `Ìù°É.°Ù¶È.com` Ê²Ã´µÄ£¬ÎÞ·¨¶Ô`Ìù°É.°Ù¶È.com/p/`ÉúÐ§
-* `@-moz-document url-prefix` ×÷ÓÃÓÚÍøÖ·¿ªÍ·£¬Ö»ÔÚ×îºóÍ¨Åä£¬²»ÄÜÍ¬Ê±¶Ô`http://Ìù°É.°Ù¶È.com/p/`ºÍ`https://Ìù°É.°Ù¶È.com/p/`ÉúÐ§
-* `@-moz-document regexp `ÕýÔò·½Ê½
-* `@-moz-document url` ×÷ÓÃÓÚÎ¨Ò»ÍøÖ·
+* `@-moz-document domain` ä½œç”¨äºŽåŸŸååŠå­åŸŸåï¼Œ`ç™¾åº¦.com`, `è´´å§.ç™¾åº¦.com` ä»€ä¹ˆçš„ï¼Œæ— æ³•å¯¹`è´´å§.ç™¾åº¦.com/p/`ç”Ÿæ•ˆ
+* `@-moz-document url-prefix` ä½œç”¨äºŽç½‘å€å¼€å¤´ï¼Œåªåœ¨æœ€åŽé€šé…ï¼Œä¸èƒ½åŒæ—¶å¯¹`http://è´´å§.ç™¾åº¦.com/p/`å’Œ`https://è´´å§.ç™¾åº¦.com/p/`ç”Ÿæ•ˆ
+* `@-moz-document regexp `æ­£åˆ™æ–¹å¼
+* `@-moz-document url` ä½œç”¨äºŽå”¯ä¸€ç½‘å€

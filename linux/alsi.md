@@ -1,6 +1,6 @@
-alsi ÎÞ·¨Ê¶±ð Window Manager
+alsi æ— æ³•è¯†åˆ« Window Manager
 ====
-Ê¶±ð WM µÄÏà¹Ø´úÂëÈçÏÂ:
+è¯†åˆ« WM çš„ç›¸å…³ä»£ç å¦‚ä¸‹:
 
 ```perl
 my $config_dir = $ENV{XDG_CONFIG_HOME} || "$home_dir/.config";
@@ -33,9 +33,9 @@ while (defined(my $process = <$ps_pipe>)) {
 }
 ```
 
-Perl µÄÓï·¨ÊµÔÚÆæ¹Ö, ´ó¸ÅÊÇ½« `PS_COMMAD`('ps -A') Ö´ÐÐ½á¹ûÊäµ½ `$ps_pipe` ±äÁ¿Àï, ±éÀúËùÓÐ½ø³Ì, È»ºóÓÃ½ø³ÌÃû²é ±í($wm »òÕß $de), ±íÀï´¢´æ×Å½ø³ÌÃûºÍ wm/de Ö®¼äµÄ¶ÔÓ¦¹ØÏµ.
+Perl çš„è¯­æ³•å®žåœ¨å¥‡æ€ª, å¤§æ¦‚æ˜¯å°† `PS_COMMAD`('ps -A') æ‰§è¡Œç»“æžœè¾“åˆ° `$ps_pipe` å˜é‡é‡Œ, éåŽ†æ‰€æœ‰è¿›ç¨‹, ç„¶åŽç”¨è¿›ç¨‹åæŸ¥ è¡¨($wm æˆ–è€… $de), è¡¨é‡Œå‚¨å­˜ç€è¿›ç¨‹åå’Œ wm/de ä¹‹é—´çš„å¯¹åº”å…³ç³».
 
-Á½¸ö±í´¢´æÔÚ `~/.config/alsi` ÏÂ.
+ä¸¤ä¸ªè¡¨å‚¨å­˜åœ¨ `~/.config/alsi` ä¸‹.
 
-ËùÒÔÕÒµ½ `xmonad` ÄÇÒ»Ïî, °Ñ×ó±ßµÄË÷Òý¸Ä³É±¾»úÉÏ xmonad µÄ½ø³ÌÃû¾ÍºÃÁË.
+æ‰€ä»¥æ‰¾åˆ° `xmonad` é‚£ä¸€é¡¹, æŠŠå·¦è¾¹çš„ç´¢å¼•æ”¹æˆæœ¬æœºä¸Š xmonad çš„è¿›ç¨‹åå°±å¥½äº†.
 
