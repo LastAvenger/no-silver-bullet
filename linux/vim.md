@@ -21,6 +21,9 @@
 * `|`是命令连接符
 * `update` 表示文件发生改动后存盘, 不用`update`的话处理完一个文件会提示文件未保存(意思大概是处理完一个文件随即退出, 要手动存盘)
 
+## 去除 BOMB 头
+    :set nobomb
+
 # Pentadactyl
 * Mkpentadactylrc 创建新的Pentadactylrc 配置文件, 位于%USERPROFILE%.
 * "恢复剪切复制黏贴的使用(占用了Ctrl + C, 需要寻找替代)

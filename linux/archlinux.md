@@ -19,19 +19,6 @@
 * 网盘：nutstore<sup>AUR</sup>
 * 网络管理前端： network-manager-applet
 
-##Firefox 插件
-* pantadactyl(使用 pentadactyl-git<sup>AUR</sup>， nightly build 对于 ff42 已经不可用)
-* ~~标签页管理器~~(已于 2015-11 停止支持) 
-* Tab MixPlus
-* Fire Guesture
-* Sytlish
-* Push to Kindle
-* LassPass 
-* ChatZilla
-* ADBlocker
-* FoxyProxy
-* Mulitfox
-
 #网络
 * networkmanger 
 * network-manager-applet(nm-applet)
