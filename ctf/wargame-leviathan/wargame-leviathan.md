@@ -162,3 +162,17 @@ leviathan2@melinda:/tmp/slove$ ~/printfile 'flag here'  # access 检测的是刚
 Ahdiemoo1j
 /bin/cat: here: No such file or directory
 ```
+
+另外发现了一个新工具 ltrace，能够跟踪库函数的调用，就不用像刚才那样分析整个程序了：
+
+```shell
+leviathan2@melinda:~$ ltrace ~/printfile /etc/leviathan_pass/leviathan2
+__libc_start_main(0x804852d, 2, 0xffffd6f4, 0x8048600 <unfinished ...>
+access("/etc/leviathan_pass/leviathan2", 4)                                       = 0
+snprintf("/bin/cat /etc/leviathan_pass/lev"..., 511, "/bin/cat %s", "/etc/leviathan_pass/leviathan2") = 39
+system("/bin/cat /etc/leviathan_pass/lev"...ougahZi8Ta
+ <no return ...>
+--- SIGCHLD (Child exited) ---
+<... system resumed> )                                                            = 0
++++ exited (status 0) +++
+```
