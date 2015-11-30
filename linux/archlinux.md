@@ -34,6 +34,7 @@
 
 ## Wine TMQQ-2013
 为什么 winetrick 不管用... 安装时总是提示 该verb 已存在  
+
 安装:
 * wine
 * winetrick
@@ -41,6 +42,23 @@
 * lib32-mpg123
 * [邓攀打包的TM2013](http://www.zhihu.com/question/23770274/answer/45703773) (似乎该配置的我都自己配置了)
 * winetrick riched20 ie6 mfc42 cjkfonts
+
+## SSH
+保持连接：
+
+```
+Host *
+ServerAliveInterval 30
+```
+
+对不同网站指定不同的私钥：
+```
+Host gitcafe.com www.gitcafe.com
+    IdentityFile ~/.ssh/gitcafe.private
+
+Host github.com www.github.com
+    IdentityFile ~/.ssh/github.private
+```
 
 # 声音
 ## 禁用蜂鸣器:
@@ -99,22 +117,18 @@ xrandr --output VGA-0 --auto --output LVDS --auto --right-of VGA-0
 
 1. 需要一个 swap 分区, 如果 swap 分区大小小于 RAM 大小, 请增大 swap 分区, 或者减小  `/sys/power/image_size`, 对于使用 swap file 的情况不讨论
 2. 在 bootloader 中增加一个内核参数 `resume=/dev/sdxY` (sdxY 是 swap 分区的名字), 代表从哪个分区 resume. 对于 grub2, 编辑 `/etc/default/grub` 文件中的 `GRUB_CMDLINE_LINUX_DEFAULT` 参数, 本次编辑如下:
-
     ```patch
     - GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"
     + GRUB_CMDLINE_LINUX_DEFAULT="quiet splash resume=/dev/sda5"
     ```
-
-更新 grub 配置 `grub-mkconfig -o /boot/grub/grub.cfg`
+新 grub 配置 `grub-mkconfig -o /boot/grub/grub.cfg`
 
 3. 配置 initramfs, 编辑 `/etc/mkinitcpio.conf` 中的 `HOOKS` 参数, 在 `udev` 后增加 `resume`, 改动如下:
-
     ```patch
     - HOOKS="base udev autodetect modconf block filesystems keyboard fsck"
     + HOOKS="base udev resume autodetect modconf block filesystems keyboard fsck"
     ```
-    
-重新生成 initramfs 镜像: `mkinitcpio -p linux`
+    重新生成 initramfs 镜像: `mkinitcpio -p linux`
 
 4. 现在可以使用 `systemctl hibernate` 休眠了
 

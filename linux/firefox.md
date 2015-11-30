@@ -1,5 +1,5 @@
 ##Firefox 插件
-* pantadactyl(使用 pentadactyl-git<sup>AUR</sup>， nightly build 对于 ff42 已经不可用)
+* ~~pantadactyl(使用 pentadactyl-git<sup>AUR</sup>， nightly build 对于 ff42 已经不可用)~~（ 15-11-30 巨卡，改用 VimFx）
 * ~~标签页管理器~~(已于 2015-11 停止支持) 
 * Tab MixPlus
 * Fire Guesture
@@ -10,6 +10,7 @@
 * ADBlocker
 * FoxyProxy
 * Mulitfox
+* VimFx
 
 # Tricks
 ## Stylish
