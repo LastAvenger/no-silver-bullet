@@ -20,3 +20,8 @@
 #### 中文路径乱码
 
     git config core.quotepath false
+
+#### 提交时使用无插件的 vim
+
+    git config --global core.editor "vim --noplugin"
+    
