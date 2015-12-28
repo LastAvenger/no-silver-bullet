@@ -178,49 +178,82 @@ system("/bin/cat /etc/leviathan_pass/lev"...ougahZi8Ta
 ```
 
 #### leviathan4
+flag: vuH0coox6m
 
-```gas
-Dump of assembler code for function main:
-   0x080485fe <+0>:     push   %ebp
-   0x080485ff <+1>:     mov    %esp,%ebp
-   0x08048601 <+3>:     and    $0xfffffff0,%esp
-   0x08048604 <+6>:     sub    $0x50,%esp
-   0x08048607 <+9>:     mov    %gs:0x14,%eax
-   0x0804860d <+15>:    mov    %eax,0x4c(%esp)
-   0x08048611 <+19>:    xor    %eax,%eax
-   0x08048613 <+21>:    movl   $0x626d6f62,0x23(%esp)
-   0x0804861b <+29>:    movw   $0x6461,0x27(%esp)
-   0x08048622 <+36>:    movb   $0x0,0x29(%esp)
-   0x08048627 <+41>:    movl   $0x732e2e2e,0x38(%esp)
-   0x0804862f <+49>:    movl   $0x33726333,0x3c(%esp)
-   0x08048637 <+57>:    movw   $0x74,0x40(%esp)
-   0x0804863e <+64>:    movl   $0x6f6e3068,0x2a(%esp)
-   0x08048646 <+72>:    movw   $0x3333,0x2e(%esp)
-   0x0804864d <+79>:    movb   $0x0,0x30(%esp)
-   0x08048652 <+84>:    movl   $0x616b616b,0x31(%esp)
-   0x0804865a <+92>:    movw   $0x616b,0x35(%esp)
-   0x08048661 <+99>:    movb   $0x0,0x37(%esp)
-   0x08048666 <+104>:   movl   $0x2e32332a,0x42(%esp)
-   0x0804866e <+112>:   movl   $0x785b2a32,0x46(%esp)
-   0x08048676 <+120>:   movw   $0x5d,0x4a(%esp)
-   0x0804867d <+127>:   lea    0x31(%esp),%eax
-   0x08048681 <+131>:   mov    %eax,0x4(%esp)
-   0x08048685 <+135>:   lea    0x2a(%esp),%eax
-   0x08048689 <+139>:   mov    %eax,(%esp)
-   0x0804868c <+142>:   call   0x80483d0 <strcmp@plt>
-   0x08048691 <+147>:   test   %eax,%eax
-   0x08048693 <+149>:   jne    0x804869d <main+159>
-   0x08048695 <+151>:   movl   $0x1,0x1c(%esp)
-   0x0804869d <+159>:   movl   $0x804878f,(%esp)
-   0x080486a4 <+166>:   call   0x80483e0 <printf@plt>
-   0x080486a9 <+171>:   call   0x804854d <do_stuff>
-   0x080486ae <+176>:   mov    $0x0,%eax
-   0x080486b3 <+181>:   mov    0x4c(%esp),%edx
-   0x080486b7 <+185>:   xor    %gs:0x14,%edx
-   0x080486be <+192>:   je     0x80486c5 <main+199>
-   0x080486c0 <+194>:   call   0x8048400 <__stack_chk_fail@plt>
-   0x080486c5 <+199>:   leave
-   0x080486c6 <+200>:   ret
-End of assembler dump.
+这次学乖了，扫了几眼汇编，程序把一大堆东西放到栈里然后 `strcmp`，果断用 ltrace 看看：
+
+```shell
+leviathan3@melinda:~$ ll level3 
+-r-sr-x--- 1 leviathan4 leviathan3 9962 Mar 21  2015 level3*
+
+leviathan3@melinda:~$ ltrace ./level3                                                                                                          
+__libc_start_main(0x80485fe, 1, 0xffffd744, 0x80486d0 <unfinished ...>                                                                         
+strcmp("h0no33", "kakaka")                                                              = -1                                                   
+printf("Enter the password> ")                                                          = 20                                                   
+fgets(Enter the password> 1234                                                                                                                 
+"1234\n", 256, 0xf7fcbc20)                                                        = 0xffffd53c                                                 
+strcmp("1234\n", "snlprintf\n")                                                         = -1                                                   
+puts("bzzzzzzzzap. WRONG"bzzzzzzzzap. WRONG                                                                                                    
+)                                                              = 19
++++ exited (status 0) +++
+
+leviathan3@melinda:~$ ltrace ./level3 
+__libc_start_main(0x80485fe, 1, 0xffffd744, 0x80486d0 <unfinished ...>
+strcmp("h0no33", "kakaka")                                                              = -1
+printf("Enter the password> ")                                                          = 20
+fgets(Enter the password> snlprintf
+"snlprintf\n", 256, 0xf7fcbc20)                                                   = 0xffffd53c
+strcmp("snlprintf\n", "snlprintf\n")                                                    = 0
+puts("[You've got shell]!"[You've got shell]!
+)                                                             = 20
+system("/bin/sh"$ 
+$ 
+ <no return ...>
+--- SIGCHLD (Child exited) ---
+<... system resumed> )                                                                  = 0
++++ exited (status 0) +++
 ```
 
+唔，结果直接出来了，前面的 `strcmp` 还是个障眼法，在 ltrace 里面是拿不到 euid 权限的，在外面再试一次：
+
+```shell
+leviathan3@melinda:~$ ./level3 
+Enter the password> snlprintf
+[You've got shell]!
+$ id
+uid=12003(leviathan3) gid=12003(leviathan3) euid=12004(leviathan4) groups=12004(leviathan4),12003(leviathan3)
+$ cat /etc/leviathan_pass/leviathan4
+vuH0coox6m
+$  
+```
+
+#### leviathan5
+flag: Tith4cokei
+
+诶，为什么题目越往后越简单呢……
+
+登录，`.trash` 目录下有一程序 `bin`，执行后输出一组八位二进制数字：
+
+```
+leviathan4@melinda:~/.trash$ ./bin
+01010100 01101001 01110100 01101000 00110100 01100011 01101111 01101011 01100101 01101001 00001010
+```
+
+继续用 ltrace 看看：
+
+```shell
+leviathan4@melinda:~/.trash$ ltrace ./bin
+__libc_start_main(0x80484cd, 1, 0xffffd724, 0x80485c0 <unfinished ...>
+fopen("/etc/leviathan_pass/leviathan5", "r")                                            = 0
++++ exited (status 255) +++
+```
+
+这里程序以二进制方式打开 `/etc/leviathan_pass/leviathan5` 之后异常退出了，因为在 ltrace 包裹下它并没有读取这个文件的权限。这里就可以大胆猜测输出的数字就是文件的二进制表示了
+不放心的话继续用 gdb 粗略看看它做了什么， `fopen` 之后调用 `fget`，得到内容之后 `putchar`，八九不离十。
+
+复制那段数字，用 vim 把转成字串数组，再用一行 python 搞定：
+
+```python
+>>> ''.join(chr(int(b, 2)) for b in ['01010100', '01101001', '01110100', '01101000', '00110100', '01100011', '01101111', '01101011', '01100101', '01101001', '00001010'])
+'Tith4cokei\n'
+```
