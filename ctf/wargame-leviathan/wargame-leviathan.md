@@ -308,3 +308,93 @@ UgaoFee4li
 ```
 
 #### leviathan7
+flag: ahy7MaeBo9
+
+直接执行可以看到需要一个 4 位的数字做参数，用 ltrace 可以看到程序调用了 `itoa` 来把字符串转成数字：
+
+```shell
+leviathan6@melinda:~$ ./leviathan6 
+usage: ./leviathan6 <4 digit code>
+leviathan6@melinda:~$ ./leviathan6 1234
+Wrong
+leviathan6@melinda:~$ ltrace ./leviathan6 1234
+__libc_start_main(0x804850d, 2, 0xffffd734, 0x8048590 <unfinished ...>
+atoi(0xffffd870, 0xffffd734, 0xffffd740, 0xf7e5710d)                                    = 1234
+puts("Wrong"Wrong
+)                                                                           = 6
++++ exited (status 6) +++
+```
+
+上 gdb：
+
+```gas
+; 假设执行了 ./leviathan6 1234
+(gdb) disassemble main
+Dump of assembler code for function main:
+   0x0804850d <+0>:     push   %ebp
+   0x0804850e <+1>:     mov    %esp,%ebp
+   0x08048510 <+3>:     and    $0xfffffff0,%esp
+   0x08048513 <+6>:     sub    $0x20,%esp
+-> 0x08048516 <+9>:     movl   $0x1bd3,0x1c(%esp)   ; 后面会用到 0x1c(%esp)
+   0x0804851e <+17>:    cmpl   $0x2,0x8(%ebp)       ; if (argc == 2)
+   0x08048522 <+21>:    je     0x8048545 <main+56>  ; 参数数量不对就跳走
+   0x08048524 <+23>:    mov    0xc(%ebp),%eax
+   0x08048527 <+26>:    mov    (%eax),%eax
+   0x08048529 <+28>:    mov    %eax,0x4(%esp)
+   0x0804852d <+32>:    movl   $0x8048620,(%esp)
+   0x08048534 <+39>:    call   0x8048390 <printf@plt>
+   0x08048539 <+44>:    movl   $0xffffffff,(%esp)
+   0x08048540 <+51>:    call   0x80483e0 <exit@plt>
+; 跳转至此： 
+   0x08048545 <+56>:    mov    0xc(%ebp),%eax       ; char** argv
+   0x08048548 <+59>:    add    $0x4,%eax            ; char** argv + 4
+   0x0804854b <+62>:    mov    (%eax),%eax          ; char* argv[1] 指向 '1234'
+   0x0804854d <+64>:    mov    %eax,(%esp)          
+   0x08048550 <+67>:    call   0x8048400 <atoi@plt> ; atoi('1234')
+-> 0x08048555 <+72>:    cmp    0x1c(%esp),%eax      ; eax = 1234;  [esp + 0x1c] = 0x1bd3
+   0x08048559 <+76>:    jne    0x8048575 <main+104>
+
+   0x0804855b <+78>:    movl   $0x3ef,(%esp)
+   0x08048562 <+85>:    call   0x80483a0 <seteuid@plt>
+   0x08048567 <+90>:    movl   $0x804863a,(%esp)
+   0x0804856e <+97>:    call   0x80483c0 <system@plt>
+   0x08048573 <+102>:   jmp    0x8048581 <main+116>
+   0x08048575 <+104>:   movl   $0x8048642,(%esp)
+   0x0804857c <+111>:   call   0x80483b0 <puts@plt>
+   0x08048581 <+116>:   leave  
+   0x08048582 <+117>:   ret    
+End of assembler dump.
+(gdb) break  *0x08048555
+Breakpoint 1 at 0x8048555
+(gdb) run 1234
+Starting program: /home/leviathan6/leviathan6 1234
+
+Breakpoint 1, 0x08048555 in main ()
+(gdb) x/u $esp +0x1c
+0xffffd65c:     7123
+(gdb) x/x $esp +0x1c 
+0xffffd65c:     0x00001bd3
+(gdb) set $eax=7123
+(gdb) c
+Continuing.
+$ 
+```
+
+程序把输入的参数用 `atoi` 转成数字然后和常数 `0x1bd3` 比较，相同则 PASS， 于是 get 到 7123 就是 key：
+
+```shell
+leviathan6@melinda:~$ ./leviathan6 7123
+$ cat /etc/leviathan_pass/leviathan7
+ahy7MaeBo9
+$
+```
+
+至此 leviathan 就做完了，除了第三题很有意思之外，其他都没什么难度（也多亏了 ltrace ），登入 leviathan7 的账户能看到这个：
+
+```
+leviathan7@melinda:~$ cat CONGRATULATIONS 
+Well Done, you seem to have used a *nix system before, now try something more serious.
+(Please don't post writeups, solutions or spoilers about the games on the web. Thank you!)
+```
+
+虽然说是 don't post，可是我还是发出来了……抱歉。
