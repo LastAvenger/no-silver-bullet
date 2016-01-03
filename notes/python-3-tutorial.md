@@ -213,3 +213,6 @@ list(map(lambda x: x + 1, range(1, 10)))
 
 ## Coding Style
 [PEP 8](https://www.python.org/dev/peps/pep-0008/): TL;DR
+
+# Chapter 8 Exception¶
+
