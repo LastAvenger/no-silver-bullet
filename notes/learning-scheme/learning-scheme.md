@@ -41,10 +41,10 @@ Learning Scheme
 
 按照如下定义嵌套的 pair 被称为 list：
 
-* '() 是 list
-* (cons element list) 是 list，element 可以是任意类型
+* `'()` 是 list
+* `(cons element list)` 是 list，element 可以是任意类型
 
-~~不加这一句的话似乎格式会乱掉？~~
+可以使用 `(null? list)` 来判断表是否空（`'()`）
 
     (cons 1 2)                      => (1 . 2)
     (cons 1 (cons 2 (cons 3 '())))  => (1 2 3)
@@ -104,3 +104,87 @@ Learning Scheme
     (define (add3 a b c) (+ a b c))
     add3            => #<procedure (add3 a b c)>
     (add3 1 2 3)    => 6
+
+### 分支
+#### if
+`(if predicate then_value else_value)` 当 `predicate` 为真则对 `then_value` 求值，反之则对 `else_value` 求值，`else_value` 部分可以省略，求得的值会传出括号外。
+对于 `predicate`，任意值（包括 `#t`）被认为 ture，`#f` 则是 false。
+
+    (define (abs x) (if (< x 0) (- x)  x))
+    
+#### not and or
+* `not` 接受一个参数，取反
+* `and` 接受任意个参数，从左到右求值，若出现 `#f` 则返回 `#f`，若全不为 `#f` 则返回最后一个参数的值
+* `and` 接受任意个参数，从左到右求值，返回第一个不是 `#f` 的参数，若全是 `#f` 则返回最后一个参数的值
+
+#### cond
+类似 case：
+
+    (cond
+      (predicate_1 clauses_1)
+      (predicate_2 clauses_2)
+        ...
+      (predicate_n clauses_n)
+      (else        clauses_else))
+
+遇到成立的 `predicate` 则执行对应的子句后返回，全部不成立则执行 `else` 的子句。
+
+#### equ
+* `eq?` 比较两个参数的地址，不要使用它来比较数字
+* `eqv?` 比较两个参数的类型和值
+* `equal?` 比较 list 与 字符串 (?)
+
+### let 
+`(let bind body)` 为 `body` 语句绑定局部变量，变量在 `bind` 中初始化，`bind` 中的变量不可互相引用：
+
+    (let ((i 1)) (+ i 2))   => 3
+
+`let` 是 `lambda` 的语法糖：
+
+    (let ((p v)) (+ p 1))       => 2
+    ; equal to
+    ((lambda (p) (+ p 1)) v)    => 2
+
+#### let\*
+使用 `let*` 可以引用定义在同个绑定中的变量（`let*` 事实上是嵌套的 `let` 的语法糖）：
+
+    (let* ((i 1) (j (- i))) (+ i j))    => 0
+
+#### named let
+可以为一个 `let` 命名来实现循环：
+
+    (define (fact-let n)
+      (let loop((n1 n) (p n))
+        (if (= n1 1) p
+        (let ((m (- n1 1)))
+            (loop (sub1 n1) (* p (sub1 n1)))))))
+
+#### letrec
+允许 `bind` 中的变量递归地调用自己：
+
+    (define (sum-letrec xs)
+      (letrec ((sum1 (lambda (xs1)
+                      (if (null? xs1) 0
+                        (+ (car xs1) (sum (cdr xs1)))))))
+        (sum1 xs)))
+
+### do
+`(do binds (predicate value) body)` 变量在 `bind` 中被绑定，若 `predicate` 为真，则函数跳出 `do` 语句，值 `value` 被传递出来，否则循环继续。
+
+    (define (fact-do n)
+      (do ((n1 n (- n1 1)) (p n (* p (- n1 1)))) ((= n1 1) p)))
+
+### 递归 
+
+    (define (fact n)
+      (if (= n 1) 1 (* n (fact (- n 1)))))
+
+#### 尾递归
+    
+    (define (fact-tail n)
+      (fact-rec n n))
+
+    (define (fact-rec n p)
+      (if (= n 1) p
+        (fact-rec (sub1 n) (* p (sub1 n)))))
+    ; 使用 named let 或者 letrec 的话可以不用两个函数
