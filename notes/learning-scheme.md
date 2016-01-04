@@ -44,6 +44,7 @@ Learning Scheme
 * '() 是 list
 * (cons element list) 是 list，element 可以是任意类型
 
+~~不加这一句的话似乎格式会乱掉？~~
 
     (cons 1 2)                      => (1 . 2)
     (cons 1 (cons 2 (cons 3 '())))  => (1 2 3)
@@ -72,6 +73,7 @@ Learning Scheme
 * booleans
 * characters
 
+以下是 The Little Schemer 中对 atom 的定义：
 
     ; All that not a pair or null is an atom.
     ; define in The Little Schemer
