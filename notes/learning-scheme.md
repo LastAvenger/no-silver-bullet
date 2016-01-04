@@ -8,23 +8,20 @@ Learning Scheme
 # 编译器
 * guile 的自动补全
 
-```scheme
-; pcaman -S readline
-; ~/.guile
-(use-modules (ice-9 readline))
-(activate-readline)
-```
+        ; pcaman -S readline
+        ; ~/.guile
+        (use-modules (ice-9 readline))
+        (activate-readline)
 
 * chicken (csi) 的自动补全
 
-```scheme
-; chicken-install readline
-; ~/.csirc
-(use readline)
-(current-input-port (make-readline-port))
-(install-history-file #f "/.csi.history")
-```
+        ; chicken-install readline
+        ; ~/.csirc
+        (use readline)
+        (current-input-port (make-readline-port))
+        (install-history-file #f "/.csi.history")
 
+# 正文
 以下代码使用 chicken 运行。
 
 ### quote
@@ -46,6 +43,7 @@ Learning Scheme
 
 * '() 是 list
 * (cons element list) 是 list，element 可以是任意类型
+
 
     (cons 1 2)                      => (1 . 2)
     (cons 1 (cons 2 (cons 3 '())))  => (1 2 3)
@@ -73,6 +71,7 @@ Learning Scheme
 * symbols
 * booleans
 * characters
+
 
     ; All that not a pair or null is an atom.
     ; define in The Little Schemer
