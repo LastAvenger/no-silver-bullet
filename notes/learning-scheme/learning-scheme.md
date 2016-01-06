@@ -112,7 +112,7 @@ Learning Scheme
 
     (define (abs x) (if (< x 0) (- x)  x))
     
-#### not and or
+#### not & and & or
 * `not` 接受一个参数，取反
 * `and` 接受任意个参数，从左到右求值，若出现 `#f` 则返回 `#f`，若全不为 `#f` 则返回最后一个参数的值
 * `and` 接受任意个参数，从左到右求值，返回第一个不是 `#f` 的参数，若全是 `#f` 则返回最后一个参数的值
@@ -170,6 +170,7 @@ Learning Scheme
 
 ### do
 `(do binds (predicate value) body)` 变量在 `bind` 中被绑定，若 `predicate` 为真，则函数跳出 `do` 语句，值 `value` 被传递出来，否则循环继续。
+`bind` 的形式是 `((p i j) ... )` 变量 `p` 被初始化为 `i`，在循环后被更新为 `j`
 
     (define (fact-do n)
       (do ((n1 n (- n1 1)) (p n (* p (- n1 1)))) ((= n1 1) p)))
@@ -188,3 +189,86 @@ Learning Scheme
       (if (= n 1) p
         (fact-rec (sub1 n) (* p (sub1 n)))))
     ; 使用 named let 或者 letrec 的话可以不用两个函数
+
+### Higher Order Function
+#### map
+`(map procedure list1 list2 ...)` `map` 把 `procedure` 应用到列表上，返回新的列表，表的个数由 `procedure` 决定
+
+    (map sub1 '(1 2 3)) => (0 1 2)
+
+#### for-each
+格式与 `map` 相同，不返回具体的值，用于副作用：
+
+    (define sum 0)
+    (for-each (lambda (x) (set! sum (+ sum x))) '(1 2 3 4))
+    => 10
+    (map (lambda (x) (set! sum (+ sum x))) '(1 2 3 4))
+    => (#<unspecified> #<unspecified> #<unspecified> #<unspecified>)
+
+#### fold
+有左折叠（`foldl`）和右折叠（`foldr`）:
+
+    (foldl + 0 '(1 2 3))    => 6
+    (foldr + 0 '(1 2 3))    => 6
+
+#### apply
+将一个表展开作为过程的参数，接受任意多的参数，第一个和最后一个参数分别应该是一个过程和一个列表（还不知道有什么用）：
+
+    (apply + 1 2 '(3 4 5))
+
+## IO
+
+### input
+#### port
+`(open-input-file file-name)` 用于打开一个文件返回一个端口，`(read-char port)` 从端口读取一个字符，读取到 EOF 的时候返回一个 `eof-object`，可用 `eof-object?` 检查，使用 `(close-input-port port)` 关闭端口
+
+    (define (kitten fname)
+      (let ((fp (open-input-file fname)))
+        (let loop ((chr (read-char fp)))
+          (if (eof-object? chr) 
+            (close-input-port fp)
+            (begin
+              (display chr)
+            (loop (read-char fp)))))))
+
+`(call-with-input-file file-name procedure)` ：函数将打开 `file-name` 得到的端口传递给 `procedure`，`procedure` 结束后端口需要手动关闭
+
+`(with-input-from-file file-name procedure)` ：将文件作为标准输入打开，因此 `procedure` 不需要参数，`procedure` 结束后文件会自动被关闭
+
+#### read
+
+`(read port)` 从端口中读入一个 S-Expression（!）：
+
+    (define (read-s fname)
+      (with-input-from-file fname 
+        (lambda () 
+          (begin
+            (display (read))
+            (newline)))))
+    (read-s "1.scm")    => (define (myabs x) (if (< x 0) (- x) x))
+
+### output
+#### port
+`(open-output-file file-name)` 打开一个文件，返回一个用于输出到该文件的端口
+
+`(open-output-file file-name)` 关闭输出端口
+
+`(call-with-output-file file-name procedure)`
+
+`(with-output-to-file file-name procedure)`
+
+#### output func
+以下函数的 `port` 都是可选参数，省略则输出到 stdout
+
+`(wirte obj port)` 将 `obj` 输出至 `port`，
+
+    (write #\c)         => #\c
+    (write "string")    => "string"
+
+`(display obj port)` 将 `obj` 输出至 `port`，
+
+    (display #\c)         => c
+    (display "string")    => string
+
+`(wirte-char char port)` 往 `port` 写入一个字符
+

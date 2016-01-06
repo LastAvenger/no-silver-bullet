@@ -34,3 +34,54 @@
                   (if (null? xs1) 0
                     (+ (car xs1) (sum (cdr xs1)))))))
     (sum1 xs)))
+
+(define (myfilter f xs) 
+  (if (null? xs) '()
+    (if (f (car xs)) 
+      (cons (car xs) (myfilter f (cdr xs)))
+      (myfilter f (cdr xs))
+    )))
+
+; test myfilter
+(myfilter (lambda (x) (> x 1)) '(1 2 3 8 1))
+
+(define (mymap f xs)
+  (if (null? xs) 
+    '()
+    (cons (f (car xs)) (mymap f (cdr xs)))
+    ))
+
+; test mymap
+(mymap sub1 '(343 34 45))
+
+(define (kitten fname)
+  (let ((fp (open-input-file fname)))
+    (let loop ((chr (read-char fp)))
+      (if (eof-object? chr) 
+        (close-input-port fp)
+        (begin
+          (display chr)
+        (loop (read-char fp)))))))
+
+(define (read-lines fname)
+  (with-input-from-file fname
+    (lambda ()
+      (let loop ((line '()) (lines '()) (c (read-char)))
+        (if (eof-object? c)
+          (reverse lines)
+        (if (char=? c #\linefeed)
+          (loop '() (cons (list->string (reverse line)) lines) (read-char))
+          (loop (cons c line) lines (read-char)))
+        )))))
+
+(define (copy-file src dst)
+  (let ((i (open-input-file src))
+        (o (open-output-file dst)))
+    (let loop ((c (read-char i)))
+      (if (eof-object? c)
+        (begin
+          (close-input-port i)
+          (close-output-port o))
+        (begin
+          (write-char c o)
+          (loop (read-char i)))))))
