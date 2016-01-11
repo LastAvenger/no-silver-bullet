@@ -272,3 +272,81 @@ Learning Scheme
 
 `(wirte-char char port)` 往 `port` 写入一个字符
 
+### 赋值
+赋值具有破坏性（destructive）, Scheme 中具有破坏性的方法都以 `!` 结尾
+
+`(set! var val)` 为一个参数赋值，赋值前参数应该被定义
+
+#### 词法闭包（lexical closure）
+> **WikiPedia:** 闭包又称词法闭包，是引用了自由变量的函数。这个被引用的自由变量将和这个函数一同存在，即使已经离开了创造它的环境也不例外。所以，有另一种说法认为闭包是由函数和与其相关的引用环境组合而成的实体。闭包在运行时可以有多个实例，不同的引用环境和相同的函数组合可以产生不同的实例。
+
+#### 副作用
+赋值 `set!` 和 IO 操作都是副作用，
+
+#### 表的赋值
+`set-car!` `set-cdr!` 分别用于为表的 car 和 cdr 部分赋值，参数可以是 S-Expression
+
+#### 用 list 实现一个队列
+
+list 的 car 部分储存了整个队列，cdr 部分储存了指向队列尾部的引用。
+
+![structure of queue](./queue.png)
+
+[图片出处](http://www.shido.info/lisp/scheme_asg_e.html)
+
+    (define (make-queue)
+      (cons '() '()))
+
+    (define (enqueue! queue obj)
+      (let ((lobj (cons obj '())))
+        (if (null? (car queue))
+        (begin
+            ; lobj :: (1 . ()) :: (1)
+            ; queue :: (() . ()) :: (())
+          (set-car! queue lobj)
+            ; queue :: ((1 . ()) . ()) :: ((1))
+          (set-cdr! queue lobj))
+            ; queue ::  ((1 . ()) . (1 . ())) :: ((1) 1)
+            ; 此时队列的 car 和 cdr 部分都 *引用* 同一个对象 lobj
+        (begin
+            ; lobj :: (2 . ()) :: (2)
+            ; queue ::  ((1 . ()) . (1 . ())) :: ((1) 1)
+          (set-cdr! (cdr queue) lobj)
+            ; queue ::  ((1 . (2 . ())) . (1 . (2 .()))) :: ((1 2) 1 2)
+            ; 借助 cdr 的引用将 lobj 入队
+          (set-cdr! queue lobj)))
+            ; queue ::  ((1 . (2 . ())) . (2 .())) :: ((1 2) 2)
+            ; 把 cdr 更新为当前的队尾 lobj
+        (car queue)))
+
+    (define (dequeue! queue)
+      (let ((obj (car (car queue))))
+        (set-car! queue (cdr (car queue)))
+        obj))
+
+    (define q (make-queue))
+    (enqueue! q 'a)     => (a)
+    (enqueue! q 'b)     => (a b)
+    (enqueue! q 'c)     => (a b c)
+    (dequeue! q)        => a
+    q                   => ((b c) c)
+
+> **NOTE:** 此处有小坑，（尚未找到对此的规范描述，仅为自行总结）不清楚 pair 中储存的到底是值还是引用，还是两者都有，反正当 pair 中储存了 pair 时，用的是引用，注意 `set!` 更改的是这个变量名的指向， `set-cdr!` 更改的是指向的对象内部的值 :(
+
+    ; 普通类型
+    (define a 1)
+    (define b (cons 1 a))
+    a   => 1
+    b   => (1 . 1)
+    (set! a 2)
+    a   => 2
+    b   => (1 . 1)
+
+    ; pair
+    (define a (cons 2  3))
+    (define b (cons 1 a))
+    a   => (2 . 3)
+    b   => (1 2 . 3)
+    (set-cdr! a 4)
+    a   => (2 . 4)
+    b   => (1 2 . 4)
