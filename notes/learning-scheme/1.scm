@@ -84,3 +84,14 @@
         (begin
           (write-char c o)
           (loop (read-char i)))))))
+
+(define (title-style s)
+  (list->string
+    (let loop ((l (string->list s))
+               (f #t))
+      (if (null? l) l
+        (if (char-whitespace? (car l))
+          (cons (car l) (loop (cdr l) #t))
+          (if f
+            (cons (char-upcase (car l)) (loop (cdr l) #f))
+            (cons (car l) (loop (cdr l) #f))))))))
