@@ -24,4 +24,11 @@
 #### 提交时使用无插件的 vim
 
     git config --global core.editor "vim --noplugin"
-    
+
+#### 建立一个远程分支并追踪
+    git branch branch-name
+    git checkout branch-name
+    git push  origin branch-name:branch-name
+    # 冒号左边为本地分支，右边为远程分支，此时该远程分支不存在因为会被创建
+    # NOTE: 如果本地分支为空，则删除远程分支
+    git branch --set-upstream-to  origin/branch-name

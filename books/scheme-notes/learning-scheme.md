@@ -352,3 +352,6 @@ list 的 car 部分储存了整个队列，cdr 部分储存了指向队列尾部
     b   => (1 2 . 4)
     (set! a (cons 4 5))
     b   => (1 2 . 4)
+
+# Symbol
+`(symbol? x)` 判断 `x` 是否为一个符号，`(string->symbol str)` 将 `str` 转换为符号，`(symbol->string sym)` 将 `sym` 转化为字符串
