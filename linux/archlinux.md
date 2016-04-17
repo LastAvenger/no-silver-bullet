@@ -4,17 +4,17 @@
 * 编辑器：vim
 * 输入法：fcitx+rime
 * 浏览器：firefox
-* 状态栏：xmobar
+* 状态栏：~~xmobar~~ dzen2
 * 启动器：dmenu
-* 托盘： ~~trayer~~(不支持多屏幕, 弃用), trayer-srg<sup>AUR</sup>
+* 托盘： ~~trayer~~(不支持多屏幕, 弃用) trayer-srg<sup>AUR</sup>
 * 图片浏览： feh
 * 文件管理： dolphin
 * Office： wps-offic
 * PDF：okular
 * 截图：scrot
-* 混频器： alsamixer, pnmxier-gtk3<sup>AUR</sup>
-* 主题更改：lxappearance(gtk), qtconfig-qt4(qt4)
-* IM: qtox-git, ~~cutegram~~(无法登录，弃用), telegram-desktop-bin-dev
+* 混频器： alsamixer  pnmxier-gtk3<sup>AUR</sup>
+* 主题更改：lxappearance(gtk)  qtconfig-qt4(qt4)
+* IM: qtox-git, ~~cutegram~~ ~~telegram-desktop-bin-dev~~ srain
 * 词典：goldlendict
 * 网盘：nutstore<sup>AUR</sup>
 * 网络管理前端： network-manager-applet
@@ -32,8 +32,10 @@
 ## 开启热点
 [createap 脚本](https://wiki.archlinux.org/index.php/Software_access_point)
 
-## Wine TMQQ-2013
-为什么 winetrick 不管用... 安装时总是提示 该verb 已存在  
+# QQ
+
+## TMQQ-2013
+为什么 winetrick 不管用... 安装时总是提示 该verb 已存在
 
 安装:
 * wine
@@ -42,6 +44,11 @@
 * lib32-mpg123
 * [邓攀打包的TM2013](http://www.zhihu.com/question/23770274/answer/45703773) (似乎该配置的我都自己配置了)
 * winetrick riched20 ie6 mfc42 cjkfonts
+
+## QQ 8.2
+使用清风打包的 Wine QQ： http://phpcj.org/wineqq/
+
+开箱即用，如果无法输入帐号，安装 lib32-mpg123，在 winecfg 中添加 `riched20`
 
 ## SSH
 保持连接：
