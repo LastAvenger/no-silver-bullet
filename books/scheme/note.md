@@ -111,7 +111,7 @@ Learning Scheme
 对于 `predicate`，任意值（包括 `#t`）被认为 ture，`#f` 则是 false。
 
     (define (abs x) (if (< x 0) (- x)  x))
-    
+
 #### not & and & or
 * `not` 接受一个参数，取反
 * `and` 接受任意个参数，从左到右求值，若出现 `#f` 则返回 `#f`，若全不为 `#f` 则返回最后一个参数的值
