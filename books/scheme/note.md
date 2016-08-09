@@ -130,9 +130,13 @@ Learning Scheme
 遇到成立的 `predicate` 则执行对应的子句后返回，全部不成立则执行 `else` 的子句。
 
 #### equ
-* `eq?` 比较两个参数的地址，不要使用它来比较数字
-* `eqv?` 比较两个参数的类型和值
-* `equal?` 比较 list 与 字符串 (?)
+
+* `=` 判断两个数字是否相等
+* `eq?` 比较两个参数的地址，不要使用它来比较数字：其结果取决于编译器实现
+* `eqv?` 是 `eq` 的超集，对于原子类型（atom？）会进行正确的比较
+* `equal?` 比较 list 与 vector
+
+ref: http://stackoverflow.com/questions/16299246/what-is-the-difference-between-eq-eqv-equal-and-in-scheme
 
 ### let 
 `(let bind body)` 为 `body` 语句绑定局部变量，变量在 `bind` 中初始化，`bind` 中的变量不可互相引用：
