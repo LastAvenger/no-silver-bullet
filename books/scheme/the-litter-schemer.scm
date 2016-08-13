@@ -16,7 +16,7 @@
     ((eq? a (car lat)) (cdr lat))
     (else (cons (car lat) (rember (cdr lat))))))
 
-;; Chapter 5: It's Full of Stars
+;; Chapter 5 - It's Full of Stars
 
 ;; l -> lat -> a list of atom
 
@@ -61,11 +61,6 @@
       ((or  (number? a1) (number? a2)) #f)
       (else (eq? a1 a2)))))
 
-(eqan? 2 3)
-(eqan? 2 2)
-(eqan? '(2 3) '(2 3))
-(eqan? '() '())
-
 (define equal?
   (lambda (s1 s2)
     (cond
@@ -82,3 +77,65 @@
    (else
     (and (equal? (car l1) (car l2))
          (eqlist? (cdr l1) (cdr l2)))))))
+
+;; Chapter 6 - Shadows
+
+;; Is `aexp' a arithmetic expression?
+(define numbered?
+  (lambda (aexp)
+    (cond
+      ((atom? aexp) (number? aexp))
+      ((eq? (car (cdr aexp)) '+)
+       (and (numbered? (car aexp))
+            (numbered? (car (cdr (cdr aexp))))))
+      ((eq? (car (cdr aexp)) '*)
+       (and (numbered? (car aexp))
+            (numbered? (car (cdr (cdr aexp))))))
+      ((eq? (car (cdr aexp)) '^)
+       (and (numbered? (car aexp))
+            (numbered? (car (cdr (cdr aexp))))))
+      (else #f))))
+
+;; Calc value of a arithmetic expression
+;; Infix notation
+(define value-infix
+  (lambda (aexp)
+    (cond
+      ((atom? aexp) aexp)
+      ((eq? (car (cdr aexp)) '+)
+       (+ (value-infix (car aexp))
+          (value-infix (car (cdr (cdr aexp))))))
+      ((eq? (car (cdr aexp)) '*)
+       (* (value-infix (car aexp))
+          (value-infix (car (cdr (cdr aexp))))))
+      ((eq? (car (cdr aexp)) '^)
+       (expt (value-infix (car aexp))
+             (value-infix (car (cdr (cdr aexp)))))))))
+
+;; Calc value of a arithmetic expression
+;; Prefix notation
+(define fst-sub-exp
+  (lambda (aexp)
+    (car (cdr aexp))))
+
+(define snd-sub-exp
+  (lambda (aexp)
+    (car (cdr (cdr aexp)))))
+
+(define operator
+  (lambda (aexp)
+    (car aexp)))
+
+(define value-prefix
+ (lambda (aexp)
+    (cond
+      ((atom? aexp) aexp)
+      ((eq? (operator aexp) '+)
+       (+ (value-prefix (fst-sub-exp aexp))
+          (value-prefix (snd-sub-exp aexp))))
+      ((eq? (operator aexp) '*)
+       (* (value-prefix (fst-sub-exp aexp))
+          (value-prefix (snd-sub-exp aexp))))
+      ((eq? (operator aexp) '^)
+       (expt (value-prefix (fst-sub-exp aexp))
+          (value-prefix (snd-sub-exp aexp)))))))
