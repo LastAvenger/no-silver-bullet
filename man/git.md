@@ -32,3 +32,9 @@
     # 冒号左边为本地分支，右边为远程分支，此时该远程分支不存在因为会被创建
     # NOTE: 如果本地分支为空，则删除远程分支
     git branch --set-upstream-to  origin/branch-name
+
+#### 从源仓库更新 fork 
+    git remote add upstream https://github.com/ORIGINAL_OWNER/ORIGINAL_REPOSITORY.git
+    git fetch upstream
+    git checkout master
+    git merge upstream/master
