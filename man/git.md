@@ -1,31 +1,30 @@
-#### 永久忽略一个对已 commit 文件/目录 的修改
+永久忽略一个对已 commit 文件/目录 的修改
 
     git update-index --assume-unchanged xxx
 
-#### 撤销本地 commit
-**注意做好备份！**
+撤销本地 commit， **注意做好备份！**
 
     git reset --hard <commit_id>
 
-#### 撤销已 push 到远程的 commit
-**注意做好备份！**
+撤销已 push 到远程的 commit， **注意做好备份！**
 
     git reset --hard <commit_id>
     git push origin HEAD --force
 
-#### 修改最后一次提交
+修改最后一次提交
 
     git commit --amend
 
-#### 中文路径乱码
+中文路径乱码
 
     git config core.quotepath false
 
-#### 提交时使用无插件的 vim
+提交时使用无插件的 vim
 
     git config --global core.editor "vim --noplugin"
 
-#### 建立一个远程分支并追踪
+建立一个远程分支并追踪
+
     git branch branch-name
     git checkout branch-name
     git push  origin branch-name:branch-name
@@ -33,7 +32,8 @@
     # NOTE: 如果本地分支为空，则删除远程分支
     git branch --set-upstream-to  origin/branch-name
 
-#### 从源仓库更新 fork 
+从源仓库更新 fork
+
     git remote add upstream https://github.com/ORIGINAL_OWNER/ORIGINAL_REPOSITORY.git
     git fetch upstream
     git checkout master
