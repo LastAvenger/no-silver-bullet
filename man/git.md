@@ -38,3 +38,10 @@
     git fetch upstream
     git checkout master
     git merge upstream/master
+
+推送 tag 到远程仓库
+
+    # 推送单个 tag
+    git push origin <tag name>
+    # 推送全部 tag
+    git push origin --tags
