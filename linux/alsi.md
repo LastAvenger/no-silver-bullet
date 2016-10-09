@@ -1,5 +1,6 @@
 alsi 无法识别 Window Manager
-====
+============================
+
 识别 WM 的相关代码如下:
 
 ```perl
@@ -33,9 +34,10 @@ while (defined(my $process = <$ps_pipe>)) {
 }
 ```
 
-Perl 的语法实在奇怪, 大概是将 `PS_COMMAD`('ps -A') 执行结果输到 `$ps_pipe` 变量里, 遍历所有进程, 然后用进程名查 表($wm 或者 $de), 表里储存着进程名和 wm/de 之间的对应关系.
+Perl 的语法实在奇怪, 大概是将 `PS_COMMAD`('ps -A') 执行结果输到 `$ps_pipe`
+变量里, 遍历所有进程, 然后用进程名查表($wm 或者 $de), 表里储存着进程名和
+wm/de 之间的对应关系.
 
 两个表储存在 `~/.config/alsi` 下.
 
 所以找到 `xmonad` 那一项, 把左边的索引改成本机上 xmonad 的进程名就好了.
-

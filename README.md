@@ -1,4 +1,33 @@
-No Silver Bullet
-================
+Notes
+===
 
-**t**he **q**uiter **y**ou **b**ecome, **t**he **m**ore **y**ou **a**re **a**ble **t**o **h**ear.
+* [man](/man/man.md)
+    * [gdb](/man/gdb.md)
+    * [gnupg](/man/gnupg.md)
+    * [git](/man/git.md)
+    * [nginx](/man/nginx.md)
+* [ctf](/ctf/ctf.md)
+    * [seedlabs](/ctf/seedlabs/seedlabs.md)
+        * [format-string-vulnerability-lab](/ctf/seedlabs/format-string-vulnerability-lab/format-string-vulnerability-lab.md)
+    * [wargame-bandit](/ctf/wargame-bandit/wargame-bandit.md)
+    * [wargame-narnia](/ctf/wargame-narnia/wargame-narnia.md)
+    * [wargame-leviathan](/ctf/wargame-leviathan.md)
+* [linux](/linux/linux.md)
+    * [raspberrypi](/linux/raspberrypi.md)
+    * [vim](/linux/vim.md)
+    * [firefox](/linux/firefox.md)
+    * [archlinux](/linux/archlinux.md)
+    * [xmonad](/linux/xmonad.md)
+    * [alsi](/linux/alsi.md)
+    * [archlinux-packing](/linux/archlinux-packing.md)
+* [tutorials](/tutorials/tutorials.md)
+    * [the-python3-tutorial](/tutorials/the-python3-tutorial.md)
+    * [bash-in-30-minutes](/tutorials/bash-in-30-minutes.md)
+    * [teach-yourself-scheme-in-fixnum-days](/tutorials/teach-yourself-scheme-in-fixnum-days.md)
+* [books](/books/books.md)
+    * [cpp-primer-plus](/books/cpp-primer-plus.md)
+    * [code-complete-2](/books/code-complete-2.md)
+    * [linux-kernel-development](/books/linux-kernel-development/linux-kernel-development.md)
+        * [chapter-1_2](/books/linux-kernel-development/chapter-1_2.md)
+        * [compile-and-run-kernel-in-qemu](/books/linux-kernel-development/compile-and-run-kernel-in-qemu.md)
+        * [misc](/books/linux-kernel-development/misc.md)
