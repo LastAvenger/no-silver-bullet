@@ -1,27 +1,32 @@
 Python 学习的流水帐
-====
+===================
+
 date: 2015-11-11
 
-教程是：https://docs.python.org/3/tutorial/index.html  
-虽然奎宁一开始就安利了 aiohttp 和 lxml，虽说 python 易学，可是感觉这些东西还是在我的理解范围之外……先放着好了
+* https://docs.python.org/3/tutorial/index.html
 
-# Chapter 2 Using the Python Interpreter¶
+# Chapter 2 Using the Python Interpreterg
 ## Usage
+
 * `python -c command [arg]`: execute statement(s) in command.
 * `python -m moudle [arg]`: run a moudle.
 * `python -i`: enter interactive mode.
 
 ## Specifice encoding
-add `# -*- coding: encoding -*-` at the next line of shebang(`#!`), UTF-8 by default.
 
-# Chapter 3 A Informal Introduction to Python¶
+add `# -*- coding: encoding -*-` at the next line of shebang(`#!`), UTF-8 by
+default.
+
+# Chapter 3 A Informal Introduction to Pythong
 ## Operator
+
 * `**`: power, `2**3` produce 8.
 * `//`: divison, but get an integrer result(discarding any fractional result).
 
 other operators are similar to C's.
 
-`_` is a build-in variable **in interactive mode**, was assigned by the last printed expression.
+`_` is a build-in variable **in interactive mode**, was assigned by the last
+printed expression.
 
 example:
 
@@ -37,9 +42,11 @@ example:
 ```
 
 ## String
+
 * use single quotes `'...'` or double quotes `"..."` to enclose a string.
-* use `\` as a escape char.
+* use ``\`` as a escape char.
 * raw string: add `r` as prefix.
+
 ```python
 >>> print('C:\some\name')  # here \n means newline!
 C:\some
@@ -48,7 +55,9 @@ ame
 C:\some\name
 ```
 
-* span multiple lines: use triple-quotes: `'''...'''` or `"""..."""`, add a '\' at the end of line to prevent a new line.
+* span multiple lines: use triple-quotes: `'''...'''` or `"""..."""`, add a '\'
+  at the end of line to prevent a new line.
+
 ```python
 >>> print("""\
 ... Usage: thingy [OPTIONS]
@@ -62,6 +71,7 @@ Usage: thingy [OPTIONS]
 ```
 
 * concat:
+
 ```python
 >>> 3 * 'un' + 'ium'
 'unununium'
@@ -104,10 +114,12 @@ example:
 > * Python strings cannot be changed (immutable)
 > * out of range slice indexes are handled gracefully when used for slicing
 
-# Chapter 4 More Control Flow Tools¶
+# Chapter 4 More Control Flow Toolsg
 ## Statement
+
 * `pass` statments: do nothing
 * `if` statments
+
 ```python
 if x = y:
     pass
@@ -118,6 +130,7 @@ else:
 ```
 
 * `for` statement
+
 ```python
 for i in range(1, 10):
     # do sth
@@ -127,6 +140,7 @@ else:
 ```
 
 * `while` statement
+
 ```python
 while i < n:
     # do sth
@@ -137,7 +151,9 @@ else:
 
 ## Defining function
 ### Keyword argument
-Using the form `kwarg = value` as argument of functions, `value` is default value of this argument and assignment is optional when called.
+
+Using the form `kwarg = value` as argument of functions,
+`value` is default value of this argument and assignment is optional when called.
 
 ```python
 >>> def parrot(voltage, state='a stiff', action='voom', type='Norwegian Blue'):
@@ -162,8 +178,10 @@ parrot('a thousand', state='pushing up the daisies')  # 1 positional, 1 keyword
 > * No argument may receive a value more than once.
 
 ### Arbitrary Argument Lists
-use `*argname` as the last argument when defineing a funciton, then this function can be called with arbitrary number of arguments.
-These argument will be warpped up in a tuple. (zero argument is allowed)
+
+use `*argname` as the last argument when defineing a funciton, then this
+function can be called with arbitrary number of arguments. These argument will
+be warpped up in a tuple. (zero argument is allowed)
 
 ```python
 >>> def arglist(*args):
@@ -175,7 +193,8 @@ These argument will be warpped up in a tuple. (zero argument is allowed)
 3
 ```
 
-if you use `**argname` as the last argument, it recieve a dictionary cotaining all **keyword arguments** except for those corresponding to a formal parameter.
+if you use `**argname` as the last argument, it recieve a dictionary cotaining
+all **keyword arguments** except for those corresponding to a formal parameter.
 
 ```python
 >>> def arglist2(*args, **args2):
@@ -191,8 +210,11 @@ a a
 b b
 ```
 ### Unpacking Argument Lists
-* write the function call with the `*`-operator to unpack the arguments out of a list or tuple.
-* write the function call with the `**`-operator to unpack the keyword arguments out of a dictionary.
+
+* write the function call with the `*`-operator to unpack the arguments out of
+  a list or tuple.
+* write the function call with the `**`-operator to unpack the keyword
+  arguments out of a dictionary.
 
 ```python
 >>> def arglist2(*args, **args2):
@@ -212,7 +234,8 @@ list(map(lambda x: x + 1, range(1, 10)))
 ```
 
 ## Coding Style
+
 [PEP 8](https://www.python.org/dev/peps/pep-0008/): TL;DR
 
-# Chapter 8 Exception¶
+# Chapter 8 Exceptiong
 

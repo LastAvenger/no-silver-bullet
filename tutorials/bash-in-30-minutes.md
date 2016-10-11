@@ -1,4 +1,4 @@
-bash 的基本用法
+Bash 的基本用法
 ===============
 
 * [Linux Shell脚本教程：30分钟玩转Shell脚本编程](http://c.biancheng.net/cpp/shell/)
@@ -16,8 +16,10 @@ bash 的基本用法
 * `$*` 所有参数
 * `$@` 所有参数, 参数被双引号包含时有所不同(?)
 
-        for var in "$*"; do; echo "$var"; done
-        for var in "$@"; do; echo "$var"; done
+```bash
+for var in "$*"; do; echo "$var"; done
+for var in "$@"; do; echo "$var"; done
+```
 
 
 * `$?` 上一个命令的退出状态
@@ -34,31 +36,38 @@ bash 的基本用法
 
 * 定义
 
-        arr=(1 2 3 4 5 6)
-        arr[1]=1
-        arr[2]=2
-
+```bash
+arr=(1 2 3 4 5 6)
+arr[1]=1
+arr[2]=2
+```
 
 * 读取
 
-        val=${a[i]}
+```bash
+val=${a[i]}
+```
 
 
 * 长度
 
-        len=${arr[n]} # 单个元素
-        len=${arr[*]} # 元素个数
-        len=${arr[@]} # 同上
+```bash
+len=${arr[n]} # 单个元素
+len=${#arr[*]} # 元素个数
+len=${#arr[@]} # 同上
+```
 
 # 运算
 
 * 比较运算 `-eq` `-ne` `-gt` `-lt` `-ge` `-le`
 
-        a=10
-        b=11
-        if [ $a -eq $b ]; then # 与`[]`的空格不可省略
-          echo "EQU"
-        fi
+```bash
+a=10
+b=11
+if [ $a -eq $b ]; then # 与`[]`的空格不可省略
+    echo "EQU"
+fi
+```
 
 
 * 布尔运算 `!`(非) `-o` (或) `-a` (与)
@@ -73,36 +82,39 @@ bash 的基本用法
 
 * `read [VAR]`
 
-    > 从标准输入读取一行字符串, 参数 `-r` 表示不把反斜杠(`\`)转义
+> 从标准输入读取一行字符串, 参数 `-r` 表示不把反斜杠(`\`)转义
 
-        read person
-        echo $person
-
+```bash
+read person
+echo $person
+```
 
 * `readonly [VAR]`
 
-    > 使该变量为只读
+> 使该变量为只读
 
 
 * `unset [VAR]`
 
-    > 删除变量, 无法删除只读变量
+> 删除变量, 无法删除只读变量
 
 
 * `echo`
 
-        echo "OK\c"     # 不换行
-        echo 'xxx\/'    # 原样输出
-
+```bash
+echo "OK\c"     # 不换行
+echo 'xxx\/'    # 原样输出
+```
 
 * `printf`
 
-        printf "%d %s\n" 1 "abc"
-
+```bash
+printf "%d %s\n" 1 "abc"
+```
 
 * `source <file>`
 
-    > 包含另一个脚本, 该脚本不需要有 x 位.(是内置命令么?)
+> 包含另一个脚本, 该脚本不需要有 x 位.(是内置命令么?)
 
 # 语句
 
@@ -116,24 +128,28 @@ bash 的基本用法
 
 ## for
 
-    for var in list
-    do
-        ...
-        ...
-    done
+```bash
+for var in list
+do
+    ...
+    ...
+done
+```
 
 不指定 `list` 的话, 使用命令行的位置参数(?), 使用 `break`, `continue`
 跳出循环(list 似乎以空格切分元素)
 
 ## 函数
 
-    func () {
-        echo "param: $1"    # $1 函数的第一个参数
-        echo "param: $2"
-        return val          # 不加的话会以最后一个命令作为返回值
-    }
-    func "1" "2"            # 调用
-    unset -f func           # 去除定义
+```bash
+func () {
+    echo "param: $1"    # $1 函数的第一个参数
+    echo "param: $2"
+    return val          # 不加的话会以最后一个命令作为返回值
+}
+func "1" "2"            # 调用
+unset -f func           # 去除定义
+```
 
 # 重定向
 

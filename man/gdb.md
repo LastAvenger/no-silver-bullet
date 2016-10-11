@@ -1,17 +1,17 @@
 GDB
 ===
 
-## References
+# References
 
 * [gdb Debugging Full Example (Tutorial): ncurses](http://www.brendangregg.com/blog/2016-08-09/gdb-example-ncurses.html)
 
-## Commands
+# Commands
 
 * `shell` 暂时进入 shell
 * `n`/`s` 单条语句，步过/步入
 * `ni`/`ns` 单条指令，步过/步入
 
-### Breakpoint
+# Breakpoint
 
 `b` 下断
 
@@ -19,7 +19,7 @@ GDB
     b *0xbeef       # 对地址下断点
     b *main + 0x10  # 对函数偏移下断点
 
-### Ouput
+# Ouput
 
 `x /FMT ADDRESS` 打印内存内容，FMT: A repeat count followed by a format letter 
 and a size letter.
@@ -45,4 +45,3 @@ and a size letter.
   若 `xxx` 非寄存器名，fallback 到用户自定义变量
 - `{TYPE}ADREXP` 对 `ADREXP` 用类型 `TYPE` 解析，
 - `@NUM` 将地址视为长度为 `NUM` 的数组起点
-

@@ -1,9 +1,6 @@
 GnuPG
 =====
 
-REF
----
-
 - http://www.ruanyifeng.com/blog/2013/07/gpg.html
 - https://www.gnupg.org/howtos/zh/index.html
 

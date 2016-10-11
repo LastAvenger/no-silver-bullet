@@ -1,3 +1,6 @@
+Git
+===
+
 永久忽略一个对已 commit 文件/目录 的修改
 
     git update-index --assume-unchanged xxx
