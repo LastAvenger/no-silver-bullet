@@ -7,7 +7,7 @@ GnuPG
 
 ID: E-Mail or Hash
 
-生成密钥 
+生成密钥
 
     gpg --gen-key
 

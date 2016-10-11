@@ -66,5 +66,5 @@ delete [] parr;
 新的 for 语法：
 
 ```cpp
-(int x in {1, 3, 4}) {...}
+for (int x in {1, 3, 4}) {...}
 ```
