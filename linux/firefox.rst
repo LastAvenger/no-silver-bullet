@@ -1,5 +1,8 @@
-Firefox 插件
-~~~~~~~~~~~~
+Firefox
+=======
+
+插件
+----
 
 -  [STRIKEOUT:pantadactyl] 15-11-30 巨卡，改用 VimFx
 -  [STRIKEOUT:标签页管理器] 已于 2015-11 停止支持
