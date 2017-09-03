@@ -105,11 +105,11 @@ reStructuredText 语法
 
     这篇笔记参考了 [reStructuredText 简介]_
 
-    .. [reStructuredText 简介]_ http://zh-sphinx-doc.readthedocs.io/en/latest/rest.html 
+    .. [reStructuredText 简介] http://zh-sphinx-doc.readthedocs.io/en/latest/rest.html 
 
 效果：
 
-这篇笔记参考了 [reStructuredText简介]_ 。
+这篇笔记参考了 [reStructuredText简介]_  。
 
 .. [reStructuredText简介] http://zh-sphinx-doc.readthedocs.io/en/latest/rest.html 
 

@@ -1,9 +1,0 @@
-=====================
-Reading in April 2017
-=====================
-
-`Setting up SSL on GitHub Pages`_
-    在使用自定义域名的 Github Page 上启用 HTTPS，其实也就是利用 CloudFlare 做反代，
-    而 CF 为他们的反代提供了 wildcard 的证书。
-
- .. _Setting up SSL on GitHub Pages: https://blog.keanulee.com/2014/10/11/setting-up-ssl-on-github-pages.html

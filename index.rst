@@ -9,6 +9,7 @@
    :glob:
    :titlesonly:
    :caption: 目录
+   :maxdepth: 2
 
    */index
 
